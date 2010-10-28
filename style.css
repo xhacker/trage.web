@@ -1,0 +1,166 @@
+@charset "utf-8"
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font: 14px/1.75 "Helvetica Neue", "Liberation Sans", Tahoma, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+a:link, a:visited {
+    color: #005591;
+}
+a:hover {
+    color: #00233D;
+}
+
+#wrapper {
+    margin: 12px auto;
+    width: 760px;
+    padding: 14px;
+    border: solid 2px #b7ddf2;
+    background: #ebf4fb;
+}
+h1 {
+    font-size: 19px;
+    line-height: 28px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+h2 {
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+p {
+    color: #666666;
+    margin-top: 6px;
+    margin-bottom: 9px;
+}
+em {
+    font-style: normal;
+    font-weight: bold;
+    color: #333;
+}
+hr {
+    width: 100%;
+    border: 0;
+    margin: 10px auto;
+    border-bottom: solid 1px #b7ddf2;
+    clear: both;
+}
+
+ul {
+    margin-top: 0 auto 3px 0;
+    padding-left: 28px;
+}
+li {
+    margin-bottom: 3px;
+    padding-left: 0;
+    color: #00233D;
+}
+
+table {
+    margin: 10px auto;
+    border-collapse: collapse;
+    border-color: #46ABE4;
+    border-style: solid;
+    border-width: 4px 2px;
+}
+td, th {
+    border-right: 1px solid #46ABE4;
+    padding: 0;
+}
+th {
+    text-align: left;
+    padding: 5px 5px;
+    background-color: #46ABE4;
+    color: #fff;
+}
+tr td {
+    background-color: #fff;
+}
+tr.gold td {
+    background-color: #FFF8C6;
+}
+tr.silver td {
+    background-color: #E8E8E8;
+}
+tr.bronze td {
+    background-color: #FFEDCA;
+}
+
+.align_left {
+    text-align: left !important;
+}
+.align_right {
+    text-align: right !important;
+}
+.align_center {
+    text-align: center !important;
+}
+
+.input {
+    padding: 6px;
+    width: 150px;
+    outline: none;
+    font-size: 13px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #717171;
+    background-color: #FEFAE0;
+}
+.input:focus {
+    -webkit-box-shadow: 0px 0px 5px #007eff;
+    -moz-box-shadow: 0px 0px 5px #007eff;
+    box-shadow: 0px 0px 5px #007eff;
+}
+
+.column {
+    float: left;
+    margin-bottom: 5px;
+    display: inline; /* Fix major IE 6 issue. */
+}
+
+.disable {
+    background-color: #E5E5E5;
+}
+.xsmall {
+    font-size: 12px;
+}
+.small {
+    font-size: 14px;
+}
+.warn {
+    width: 540px;
+    text-align: center;
+    font-size: 14px;
+    margin: auto;
+    border: 2px solid #E8B74E;
+    background-color: #FFFAD5;
+    padding: 10px;
+}
+.info {
+    width: 540px;
+    text-align: center;
+    font-size: 14px;
+    margin: auto;
+    border: 2px solid #3CA935;
+    background-color: #EBFFEA;
+    padding: 10px;
+}
+.notify {
+    width: 100%;
+    position: fixed;
+    top: 36px;
+}
+.notify p {
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    opacity: 0.8;
+    margin: auto;
+    width: 320px;
+}
