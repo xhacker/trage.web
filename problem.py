@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 SET_UNICODE_OUT("utf-8")
 from trage.common.problem import Problem
-prob_source = 'user'
+from trage.helpers import nl2br
+
 prob = Problem(THIS.args[0])
 prob.load()
 
@@ -17,10 +18,16 @@ main = u'''
 <p>%(info_input)s</p>
 <h3>输出说明</h3>
 <p>%(info_output)s</p>
+<h3>样例输入</h3>
+<p>%(example_input)s</p>
+<h3>样例输出</h3>
+<p>%(example_output)s</p>
+<h3>提示</h3>
+<p>%(info_hint)s</p>
 <h3>提交程序</h3>
 <form action="/judge" enctype="multipart/form-data" method="post">
-    <p>Should be <em>%(name)s.c</em>, <em>%(name)s.cpp</em> or <em>%(name)s.pas</em>.
-    <p>Using <em>file</em> input/output (<em>%(name)s.in</em>, <em>%(name)s.out</em>).</p>
+    <p class="small">Should be <em>%(name)s.c</em>, <em>%(name)s.cpp</em> or <em>%(name)s.pas</em>.
+    <br />Using <em>file</em> input/output (<em>%(name)s.in</em>, <em>%(name)s.out</em>).</p>
     <p>
         <input type="file" name="source" />
         <input type="hidden" name="prob_id" value="%(id)s" />
@@ -31,8 +38,11 @@ main = u'''
     'title': prob.get_title(),
     'id': prob.get_id(),
     'name': prob.get_name(),
-    'info_main': prob.get_info_main().replace("\n","<br />\n"),
-    'info_input': prob.get_info_input().replace("\n","<br />\n"),
-    'info_output': prob.get_info_output().replace("\n","<br />\n") }
+    'info_main': nl2br(prob.get_info_main()),
+    'info_input': nl2br(prob.get_info_input()),
+    'info_output': nl2br(prob.get_info_output()),
+    'example_input': nl2br(prob.get_example_input()),
+    'example_output': nl2br(prob.get_example_output()),
+    'info_hint': nl2br(prob.get_info_hint()) }
 
 print KT('/main.kt', data=locals(), this=THIS)

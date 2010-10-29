@@ -1,7 +1,7 @@
 body {
     padding: 0px;
     margin: 0px;
-    font: 14px/1.6 Ubuntu, "Dejavu Sans", "Helvetica Neue", Tahoma, "WenQuanYi Micro Hei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font: 14px/1.65 Ubuntu, "Dejavu Sans", "Helvetica Neue", Tahoma, "WenQuanYi Micro Hei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 a {
@@ -40,6 +40,9 @@ p {
     margin-top: 6px;
     margin-bottom: 9px;
 }
+img {
+    margin: 8px auto 3px 10px;
+}
 em {
     font-style: normal;
     font-weight: bold;
@@ -54,7 +57,7 @@ hr {
 }
 
 ul {
-    margin-top: 0 auto 3px 0;
+    margin: 0 auto 5px auto;
     padding-left: 28px;
 }
 li {

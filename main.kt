@@ -12,7 +12,7 @@
 <hr />
 $data.main
 <hr />
-<p class="xsmall">♥ Proudly powered by TrageWeb.</p>
+<p class="xsmall">♥ Proudly powered by TrageWeb. Made in Beijing Nation Day School.</p>
 </div>
 </body>
 </html>
