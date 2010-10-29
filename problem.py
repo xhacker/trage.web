@@ -9,7 +9,7 @@ title = "Problem[%s]: %s" % (prob.get_id(), prob.get_title())
 nav = title
 
 main = u'''
-<h2>%(title)s <sup>Problem[%(id)s]: %(name)s</sup></h2>
+<h2>%(title)s</h2>
 <hr />
 <h3>题目描述</h3>
 <p>%(info_main)s</p>
@@ -31,8 +31,8 @@ main = u'''
     'title': prob.get_title(),
     'id': prob.get_id(),
     'name': prob.get_name(),
-    'info_main': prob.get_info_main(),
-    'info_input': prob.get_info_input(),
-    'info_output': prob.get_info_output() }
+    'info_main': prob.get_info_main().replace("\n","<br />\n"),
+    'info_input': prob.get_info_input().replace("\n","<br />\n"),
+    'info_output': prob.get_info_output().replace("\n","<br />\n") }
 
 print KT('/main.kt', data=locals(), this=THIS)

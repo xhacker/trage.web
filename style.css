@@ -1,9 +1,7 @@
-@charset "utf-8"
-
 body {
     padding: 0px;
     margin: 0px;
-    font: 14px/1.75 "Helvetica Neue", "Liberation Sans", Tahoma, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font: 14px/1.6 Ubuntu, "Dejavu Sans", "Helvetica Neue", Tahoma, "WenQuanYi Micro Hei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
 
 a {
@@ -24,17 +22,21 @@ a:hover {
     background: #ebf4fb;
 }
 h1 {
-    font-size: 19px;
+    font-size: 20px;
     line-height: 28px;
     margin-top: 4px;
     margin-bottom: 8px;
 }
 h2 {
     margin-bottom: 10px;
-    font-size: 17px;
+    font-size: 16px;
+}
+h3 {
+    margin-bottom: 0;
+    font-size: 15px;
 }
 p {
-    color: #666666;
+    color: #444;
     margin-top: 6px;
     margin-bottom: 9px;
 }
@@ -62,6 +64,7 @@ li {
 }
 
 table {
+    font-family: "Menlo", "DejaVu Sans Mono", Consolas, Monaco, "Courier New", "WenQuanYi Micro Hei", "Hiragino Sans GB", "Microsoft YaHei";
     margin: 10px auto;
     border-collapse: collapse;
     border-color: #46ABE4;
@@ -70,24 +73,27 @@ table {
 }
 td, th {
     border-right: 1px solid #46ABE4;
-    padding: 0;
+}
+td {
+    padding: 6px 24px;
 }
 th {
     text-align: left;
-    padding: 5px 5px;
+    padding: 5px 7px;
     background-color: #46ABE4;
     color: #fff;
 }
 tr td {
     background-color: #fff;
 }
-tr.gold td {
+/* TODO */
+tr.wa td {
     background-color: #FFF8C6;
 }
-tr.silver td {
+tr.le td {
     background-color: #E8E8E8;
 }
-tr.bronze td {
+tr.rte td {
     background-color: #FFEDCA;
 }
 
@@ -121,17 +127,17 @@ tr.bronze td {
 .column {
     float: left;
     margin-bottom: 5px;
-    display: inline; /* Fix major IE 6 issue. */
+    display: inline;
 }
 
 .disable {
     background-color: #E5E5E5;
 }
 .xsmall {
-    font-size: 12px;
+    font-size: 11px;
 }
 .small {
-    font-size: 14px;
+    font-size: 13px;
 }
 .warn {
     width: 540px;

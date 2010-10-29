@@ -36,27 +36,33 @@ def judge():
         return
     html['judge_info'] += '<p>Compile Done.</p>'
 
-    html['judge_info'] += '<h3>Judge</h3>'
+    html['judge_info'] += '<h3>Judge</h3>\n'
+    html['judge_info'] += u'<table><tr><th>测试点</th><th>结果</th><th>时间</th><th id="mem">内存</th></tr>\n'
     while True:
         tpoint_result = judge.judge()
-
         if tpoint_result == None:
             break
 
-        if tpoint_result['error']:
-            html['judge_info'] += '<p>Problem data file error.</p>'
-            return
-
-        str = '[ Test %2d ] [ %3s ]' % (tpoint_result['tpoint'], tpoint_result['status'])
         if tpoint_result['status'] in ['AC', 'WA']:
-            str += ' [ Time: %.2fs/%.1fs ] [ Mem: %.2fM/%dM ]' % (tpoint_result['time'], tpoint_result['timelmt'], tpoint_result['mem'],  tpoint_result['memlmt'])
-        html['judge_info'] += str + '<br />'
+            time = '%.2fs / %.1fs' % (tpoint_result['time'], tpoint_result['timelmt'])
+            mem = '%.2fM / %dM' % (tpoint_result['mem'],  tpoint_result['memlmt'])
+        elif tpoint_result['status'] == 'TLE':
+            time = '>%.1fs / %.1fs' % (tpoint_result['timelmt'], tpoint_result['timelmt'])
+            mem = 'Unknown / %dM' % tpoint_result['memlmt']
+        elif tpoint_result['status'] == 'MLE':
+            time = '%.2fs / %.1fs' % (tpoint_result['time'], tpoint_result['timelmt'])
+            mem = '>%dM / %dM' % (tpoint_result['memlmt'],  tpoint_result['memlmt'])
+        else:
+            time = 'Unknown / %.1fs' % tpoint_result['timelmt']
+            mem = 'Unknown / %dM' % tpoint_result['memlmt']
+        html['judge_info'] += '<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td></tr>\n' % (tpoint_result['tpoint'], tpoint_result['status'], time, mem)
 
     result = judge.get_result()
     if result['AC'] == True:
-        html['judge_info'] += '[ Result: %2d/%2d ] Accepted.<br />' % (result['tpoint_correct'], result['tpoint_count'])
+        html['judge_info'] += '<tr><th colspan="4">[ Result: %d / %d ] Accepted.</th></tr>\n' % (result['tpoint_correct'], result['tpoint_count'])
     else:
-        html['judge_info'] += '[ Result: %2d/%2d ] Not accepted.<br />' % (result['tpoint_correct'], result['tpoint_count'])
+        html['judge_info'] += '<tr><th colspan="4">[ Result: %d / %d ] Not accepted.</th></tr>\n' % (result['tpoint_correct'], result['tpoint_count'])
+    html['judge_info'] += '</table>\n'
 
 judge()
 
@@ -69,7 +75,7 @@ title = "Judging Problem[%s]: %s" % (prob.get_id(), prob.get_title())
 nav = u'<a href="/problem/%s">Problem[%s]: %s</a> » Judge' % (prob.get_id(), prob.get_id(), prob.get_title())
 
 main = u'''
-<h2>%(title)s <sup>Problem[%(id)s]: %(name)s</sup></h2>
+<h2>%(title)s</h2>
 <hr />
 %(judge_info)s
 ''' % html
