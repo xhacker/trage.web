@@ -1,4 +1,6 @@
-from trage.common.problem import get_io
+SET_UNICODE_OUT("utf-8")
+
+from trage.common.problem import get_io, get_std
 
 def index():
     print "Chect 不利于身体健康。慎用。"
@@ -9,5 +11,18 @@ def input(prob_id, tp):
 def output(prob_id, tp):
     print "<pre>%s</pre>" % get_io('output', prob_id, tp)
 
-def source(prob_id, tp):
-    print '^ ^'
+def std(prob_id):
+    import cgi
+    print '''<meta charset="UTF-8" />
+    <script type="text/javascript" src="/sh.js"></script>
+    <link type="text/css" rel="stylesheet" href="/sh_style.css">
+    <body onload="sh_highlightDocument();">'''
+    if get_std(prob_id)['c']:
+        print '<h2>C 语言：</h2>'
+        print '<pre class="sh_c">%s</pre>' % cgi.escape(get_std(prob_id)['c'])
+    if get_std(prob_id)['cpp']:
+        print '<h2>C++ 语言：</h2>'
+        print '<pre class="sh_cpp">%s</pre>' % cgi.escape(get_std(prob_id)['cpp'])
+    if not get_std(prob_id)['c'] and not get_std(prob_id)['cpp']:
+        print '悲剧…这题还没有标程= = 只好自己琢磨了～'
+    print '</body>'

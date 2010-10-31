@@ -60,7 +60,10 @@ main = u'''
 <h3>提交程序</h3>
 <a name="submit"></a>
 %(submit)s
+<h3>偷看程序</h3>
+<p>能再想想就再想想吧。如果如果实在做不出来了，<a href="/cheat/std?prob_id=%(id)s">点此偷看…</a></p>
 ''' % {
+    'id': prob.get_id(),
     'emotion': ac_emotion,
     'title': prob.get_title(),
     'info_main': nl2br(prob.get_info_main()),
