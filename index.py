@@ -30,7 +30,7 @@ for prob in problist:
 
 if login:
     user_html = '''<h2 class="float: left;">你好，%s。祝你好运！</h2>
-<p><a href="/user/logout">登出</a> <a href="">呃…想改密码吗？现在还没这功能= =</a></p>''' % session.realname
+<p><a href="/user/logout" style="margin-left: 14px;">登出</a> <a href="" style="margin-left: 14px;">修改密码</a></p>''' % session.realname
 else:
     user_html = '''<h2>登录或注册</h2>
 <form action="/user/login" id="login">
@@ -94,7 +94,11 @@ quotes = [
     'NOI == Noting of Informatics.',
     'NOIP == No OI Please!',
     'Trage + dy = Tragedy.',
-    'Trage = Train + Judge.'
+    'Trage = Train + Judge.',
+    '办证：15201187049',
+    '黄河母亲，神力无限！',
+    '刷题重地，闲人免进。',
+    '不刷题的人是孤独的。孤独的人是可耻的。',
 ]
 from random import randint
 quote = quotes[randint(0, len(quotes) - 1)]

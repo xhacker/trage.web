@@ -4,18 +4,21 @@ SET_UNICODE_OUT("utf-8")
 from trage.common.problem import *
 from trage.helpers import nl2br
 
+login = hasattr(session, "login") and session.login
+
 prob = Problem(THIS.args[0])
 prob.load()
 
 title = "Problem[%s]: %s" % (prob.get_id(), prob.get_title())
 nav = title
+js = ''
 
 notify = ''
 if hasattr(session, "notify") and session.notify:
     notify = '<div class="notify"><p class="info">%s</p></div>' % session.notify
     session.notify = None
 
-if hasattr(session, "login") and session.login:
+if login:
     submit_html = '''<form action="/judge" enctype="multipart/form-data" method="post">
     <p class="small">Should be <em>*.c</em>, <em>*.cpp</em> or <em>*.pas</em>.
     <br />Using <em>file</em> input/output (<em>%(name)s.in</em>, <em>%(name)s.out</em>).</p>
@@ -30,11 +33,14 @@ if hasattr(session, "login") and session.login:
 else:
     submit_html = '<p>还没<a href="/#login">登录</a>呢，别想交题！！</p>'
 
-AC = get_status(session.userid, prob.get_id())
-if AC:
-    ac_emotion = '<span class="accepted"><abbr title="已经秒掉了！">☻</abbr></span>'
+if login:
+    AC = get_status(session.userid, prob.get_id())
+    if AC:
+        ac_emotion = '<span class="accepted"><abbr title="已经秒掉了！">☻</abbr></span>'
+    else:
+        ac_emotion = '<span class="unaccepted"><abbr title="呃…还没 AC 呢，赶快做吧…">☺</abbr></span>'
 else:
-    ac_emotion = '<span class="unaccepted"><abbr title="呃…还没 AC 呢，赶快做吧…">☺</abbr></span>'
+    ac_emotion = ''
 
 main = u'''
 <h2>%(emotion)s %(title)s</h2>

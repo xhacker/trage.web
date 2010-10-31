@@ -40,7 +40,7 @@ def judge():
     html['judge_info'] += '<p>Compile Done.</p>'
 
     html['judge_info'] += '<h3>Judge</h3>\n'
-    html['judge_info'] += u'<table><tr><th>测试点</th><th>结果</th><th>时间</th><th id="mem">内存</th></tr>\n'
+    html['judge_info'] += u'<table><tr><th>测试点</th><th>结果</th><th>时间</th><th>内存</th><th>偷看</th></tr>\n'
     while True:
         tpoint_result = judge.judge()
         if tpoint_result == None:
@@ -58,15 +58,22 @@ def judge():
         else:
             time = 'Unknown / %.1fs' % tpoint_result['timelmt']
             mem = 'Unknown / %dM' % tpoint_result['memlmt']
-        html['judge_info'] += '<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td></tr>\n' % (tpoint_result['tpoint'], tpoint_result['status'], time, mem)
+        html['judge_info'] += u'''<tr><td>%(tp)d</td><td>%(status)s</td><td>%(time)s</td><td>%(mem)s</td>
+        <td><a onclick="return confirm_cheat();" href="/cheat/input?prob_id=%(prob_id)s&tp=%(tp_real)d" target="_blank">输入</a> · <a onclick="return confirm_cheat();" href="/cheat/output?prob_id=%(prob_id)s&tp=%(tp_real)d" target="_blank">输出</a></td></tr>\n''' % {
+            'tp': tpoint_result['tpoint'],
+            'status': tpoint_result['status'],
+            'time': time,
+            'mem': mem,
+            'prob_id': prob_id,
+            'tp_real': tpoint_result['tpoint'] - 1 }
 
     result = judge.get_result()
     global AC
     if result['AC'] == True:
         AC = True
-        html['judge_info'] += '<tr><th colspan="4">[ Result: %d / %d ] Accepted.</th></tr>\n' % (result['tpoint_correct'], result['tpoint_count'])
+        html['judge_info'] += '<tr><th colspan="5">[ Result: %d / %d ] Accepted.</th></tr>\n' % (result['tpoint_correct'], result['tpoint_count'])
     else:
-        html['judge_info'] += '<tr><th colspan="4">[ Result: %d / %d ] Not accepted.</th></tr>\n' % (result['tpoint_correct'], result['tpoint_count'])
+        html['judge_info'] += '<tr><th colspan="5">[ Result: %d / %d ] Not accepted.</th></tr>\n' % (result['tpoint_correct'], result['tpoint_count'])
     html['judge_info'] += '</table>\n'
 
 judge()
@@ -80,6 +87,10 @@ html['name'] = prob.get_name()
 title = "Judging Problem[%s]: %s" % (prob.get_id(), prob.get_title())
 nav = u'<a href="/problem/%s">Problem[%s]: %s</a> » Judge' % (prob.get_id(), prob.get_id(), prob.get_title())
 notify = ''
+js = '''function confirm_cheat() {
+    r = confirm("最好是自己先想想～你真的真的确定要偷看吗……");
+    return r;
+}'''
 
 main = u'''
 <h2>%(title)s</h2>
