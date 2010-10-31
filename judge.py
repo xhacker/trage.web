@@ -78,6 +78,7 @@ main = u'''
 <h2>%(title)s</h2>
 <hr />
 %(judge_info)s
+<p><a href="/problem/%(id)s" style="margin-left: 14px;">« 返回该题目</a><a href="/" style="margin-left: 14px;">« 返回首页</a></p>
 ''' % html
 
 print KT('/main.kt', data=locals(), this=THIS)

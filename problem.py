@@ -26,7 +26,7 @@ main = u'''
 <p>%(info_hint)s</p>
 <h3>提交程序</h3>
 <form action="/judge" enctype="multipart/form-data" method="post">
-    <p class="small">Should be <em>%(name)s.c</em>, <em>%(name)s.cpp</em> or <em>%(name)s.pas</em>.
+    <p class="small">Should be <em>*.c</em>, <em>*.cpp</em> or <em>*.pas</em>.
     <br />Using <em>file</em> input/output (<em>%(name)s.in</em>, <em>%(name)s.out</em>).</p>
     <p>
         <input type="file" name="source" />
