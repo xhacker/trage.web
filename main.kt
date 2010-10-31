@@ -14,7 +14,7 @@ $data.notify
 <hr />
 $data.main
 <hr />
-<p class="xsmall">♥ Proudly powered by TrageWeb. Made in Beijing National Day School.</p>
+<p class="xsmall"><a onclick="alert('别点我！有意思吗？')">♥</a> Proudly powered by <a href="http://code.google.com/p/trage/">TrageWeb</a>. Made in Beijing National Day School.</p>
 </div>
 </body>
 </html>

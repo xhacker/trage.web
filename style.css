@@ -110,6 +110,10 @@ tr.rte td {
     text-align: center !important;
 }
 
+.accepted {
+    color: #229C20;
+}
+
 label {
     width: 50px;
     float: left;
