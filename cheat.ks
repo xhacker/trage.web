@@ -23,6 +23,4 @@ def std(prob_id):
     if get_std(prob_id)['cpp']:
         print '<h2>C++ 语言：</h2>'
         print '<pre class="sh_cpp">%s</pre>' % cgi.escape(get_std(prob_id)['cpp'])
-    if not get_std(prob_id)['c'] and not get_std(prob_id)['cpp']:
-        print '悲剧…这题还没有标程= = 只好自己琢磨了～'
     print '</body>'
