@@ -2,6 +2,7 @@
 <html>
 <html lang="zh-CN">
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <title>$data.title - TrageWeb</title>
     <link rel="stylesheet" type="text/css" id="css" href="/style.css" />
     <script type="text/javascript">$data.js</script>

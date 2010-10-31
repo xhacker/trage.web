@@ -30,7 +30,17 @@ for prob in problist:
 
 if login:
     user_html = '''<h2 class="float: left;">你好，%s。祝你好运！</h2>
-<p><a href="/user/logout" style="margin-left: 14px;">登出</a> <a href="" style="margin-left: 14px;">修改密码</a></p>''' % session.realname
+<p><a href="/user/logout" style="margin-left: 14px;">登出</a> <a href="#" onclick="change_password();" style="margin-left: 14px;">修改密码</a></p>
+<form action="/user/change_password" id="password_form" style="display: none;">
+<p>
+    <label for="username">新密码</label>
+    <input name="username" type="hidden" value="%s" />
+    <input class="input" id="password" name="password" type="password" />
+</p>
+<p>
+    <button type="submit">修改</button>
+</p>
+</form>''' % (session.realname, session.username)
 else:
     user_html = '''<h2>登录或注册</h2>
 <form action="/user/login" id="login">
@@ -75,6 +85,10 @@ function login()
 {
     document.getElementById("login").style.display = "block";
     document.getElementById("reg").style.display = "none";
+}
+function change_password()
+{
+    document.getElementById("password_form").style.display = "block";
 }'''
 
 quotes = [
@@ -91,7 +105,7 @@ quotes = [
     '编译失败。源代码大喊：“我爸是陶陶！”',
     '人生没有后效性，DP 就是搞不定。',
     '做不出题怎么办？再做！',
-    'NOI == Noting of Informatics.',
+    'NOI == Nothing of Informatics.',
     'NOIP == No OI Please!',
     'Trage + dy = Tragedy.',
     'Trage = Train + Judge.',
@@ -105,6 +119,7 @@ quote = quotes[randint(0, len(quotes) - 1)]
 
 main = u'''<div class="warn align_left">
 <p>欢迎使用 TrageWeb 。这是一个基于 Trage 评测系统的站点，目前处于测试阶段。<br />请反馈任何遇到的问题，谢谢。</p>
+<p>目前题目不多，仅用来测试。未来将逐步添加。</p>
 </div>
 <hr />
 <h2>Problem List</h2>

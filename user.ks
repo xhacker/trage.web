@@ -22,6 +22,15 @@ def login(username, password):
         session.notify = "Login Sucessful."
         raise HTTP_REDIRECTION, "/"
 
+def change_password(username, password):
+    from trage.common.user import User
+    user = User(username, '我爸是陶陶')
+    user.load()
+    user.set_password(password)
+
+    session.notify = "修改成功！"
+    raise HTTP_REDIRECTION, "/"
+
 def logout():
     session.login = None
 
@@ -34,5 +43,7 @@ def reg(username, realname, password):
         raise HTTP_REDIRECTION, "/"
 
     from trage.common.user import add_user
-    add_user(username, realname, password)
+    if add_user(username, realname, password):
+        session.notify = "用户名重了，换个诡异点的吧～"
+        raise HTTP_REDIRECTION, "/"
     login(username, password)
