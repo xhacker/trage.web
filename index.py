@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 Include("/page_common.py")
 from trage.common.problem import *
+from trage.common.user import get_code_list
 from trage.helpers import get_difficulty_text
 from user import is_login
 
@@ -18,7 +19,7 @@ for prob in problist:
             accepted_text = '<span class="unaccepted"><abbr title="呃…还没 AC 呢，赶快做吧…">☺</abbr></span>'
     else:
         accepted_text = ''
-    problist_html += '<li>[%s] %s <a href="problem/%s">%s</a></li>' % (get_difficulty_text(prob['difficulty']), accepted_text, prob['id'], prob['title'])
+    problist_html += '<li>[%s] %s <a href="/problem/%s">%s</a></li>' % (get_difficulty_text(prob['difficulty']), accepted_text, prob['id'], prob['title'])
 
 if login:
     user_html = '''<h2 class="float: left;">你好，%s。祝你好运！</h2>
@@ -33,6 +34,15 @@ if login:
     <button type="submit">修改</button>
 </p>
 </form>''' % (session.realname, session.username)
+    code_list = get_code_list(session.userid)
+    code_html = ""
+    for code in code_list:
+        prob = Problem(code['prob_id'])
+        prob.load()
+        from time import localtime, strftime
+        ftime = strftime("%Y年%m月%d日 %H:%M", localtime(code['time']))
+        code_html += '<li><a href="/peep/usercode/%s" target="_blank">[%s] %s</a></li>' % (code['filename'], ftime, prob.get_title())
+    user_html += "<h3>通过的代码备份</h3><ul>%s</ul>" % code_html
 else:
     user_html = '''<h2>登录或注册</h2>
 <form action="/user/login" id="login">

@@ -34,7 +34,7 @@ else:
     ac_emotion = ''
 
 if get_std(prob.get_id())['c'] or get_std(prob.get_id())['cpp']:
-    std_html = '能再想想就再想想吧。如果如果实在做不出来了，<a href="/cheat/std/%s" target="_blank">点此偷看…</a>' % prob.get_id()
+    std_html = '能再想想就再想想吧。如果如果实在做不出来了，<a href="/peep/std/%s" target="_blank">点此偷看…</a>' % prob.get_id()
 else:
     std_html = '此题暂无标程，没法偷看…<a href="http://www.google.com.hk/search?q=' + prob.get_title() + '+标程&sa=Google+%E6%90%9C%E7%B4%A2&prog=aff&client=pub-1037665964482161&hl=zh-CN&source=sdo_sb&sdo_rt=ChBKScsMAAfkWwpvwhqoq0kyEg5fX1JMX0RFRkFVTFRfXxoIW1Pqd8JmonQoAVjV0vz7p7mFrogB" target="_blank">点此到网上搜搜</a>。'
 

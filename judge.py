@@ -2,7 +2,7 @@
 Include("/page_common.py")
 
 from trage.common.judge import Judge
-from trage.common.problem import Problem, update_status
+from trage.common.problem import *
 from trage.helpers import nl2br
 
 prob_id = _prob_id
@@ -60,7 +60,7 @@ def judge():
             time = 'Unknown / %.1fs' % tpoint_result['timelmt']
             mem = 'Unknown / %dM' % tpoint_result['memlmt']
         html['judge_info'] += u'''<tr><td>%(tp)d</td><td>%(status)s</td><td>%(time)s</td><td>%(mem)s</td>
-        <td><a onclick="return confirm_cheat();" href="/cheat/input/%(prob_id)s/%(tp_real)d" target="_blank">输入</a> · <a onclick="return confirm_cheat();" href="/cheat/output/%(prob_id)s/%(tp_real)d" target="_blank">输出</a></td></tr>\n''' % {
+        <td><a onclick="return confirm_cheat();" href="/peep/input/%(prob_id)s/%(tp_real)d" target="_blank">输入</a> · <a onclick="return confirm_cheat();" href="/peep/output/%(prob_id)s/%(tp_real)d" target="_blank">输出</a></td></tr>\n''' % {
             'tp': tpoint_result['tpoint'],
             'status': tpoint_result['status'],
             'time': time,
@@ -79,6 +79,9 @@ def judge():
 
 judge()
 update_status(session.userid, prob_id, AC)
+if AC:
+    store_code(session.userid, prob_id, tmp_name)
+clean_code(tmp_name)
 
 prob = Problem(prob_id)
 prob.load()

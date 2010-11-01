@@ -81,6 +81,7 @@ input[type="text"], input[type="password"], textarea {
     padding: 3px 6px;
     outline: none;
     border: 1px solid #947C63;
+    font-size: 0.8em;
 }
 input[type="text"], input[type="password"] {
     width: 150px;
