@@ -5,13 +5,14 @@ from trage.common.problem import get_io, get_std
 def index():
     print "Chect 不利于身体健康。慎用。"
 
-def input(prob_id, tp):
-    print "<pre>%s</pre>" % get_io('input', prob_id, tp)
+def input():
+    print "<pre>%s</pre>" % get_io('input', THIS.args[0], THIS.args[1])
 
-def output(prob_id, tp):
-    print "<pre>%s</pre>" % get_io('output', prob_id, tp)
+def output():
+    print "<pre>%s</pre>" % get_io('output', THIS.args[0], THIS.args[1])
 
-def std(prob_id):
+def std():
+    prob_id = THIS.args[0]
     import cgi
     print '''<meta charset="UTF-8" />
     <script type="text/javascript" src="/sh.js"></script>

@@ -1,8 +1,9 @@
 # -*- coding: UTF-8 -*-
-session = Session()
-SET_UNICODE_OUT("utf-8")
+Include("/page_common.py")
+
 from trage.common.judge import Judge
 from trage.common.problem import Problem, update_status
+from trage.helpers import nl2br
 
 prob_id = _prob_id
 
@@ -34,8 +35,8 @@ def judge():
     html['judge_info'] += '<h3>Compile</h3>'
     compile_err = judge.compile()
     if compile_err:
-        html['judge_info'] += '<p>Compile failed. Error: '
-        html['judge_info'] += compile_err + '</p>'
+        html['judge_info'] += '<p>Compile failed. Error:<br />'
+        html['judge_info'] += nl2br(compile_err) + '</p>'
         return
     html['judge_info'] += '<p>Compile Done.</p>'
 
@@ -59,7 +60,7 @@ def judge():
             time = 'Unknown / %.1fs' % tpoint_result['timelmt']
             mem = 'Unknown / %dM' % tpoint_result['memlmt']
         html['judge_info'] += u'''<tr><td>%(tp)d</td><td>%(status)s</td><td>%(time)s</td><td>%(mem)s</td>
-        <td><a onclick="return confirm_cheat();" href="/cheat/input?prob_id=%(prob_id)s&tp=%(tp_real)d" target="_blank">输入</a> · <a onclick="return confirm_cheat();" href="/cheat/output?prob_id=%(prob_id)s&tp=%(tp_real)d" target="_blank">输出</a></td></tr>\n''' % {
+        <td><a onclick="return confirm_cheat();" href="/cheat/input/%(prob_id)s/%(tp_real)d" target="_blank">输入</a> · <a onclick="return confirm_cheat();" href="/cheat/output/%(prob_id)s/%(tp_real)d" target="_blank">输出</a></td></tr>\n''' % {
             'tp': tpoint_result['tpoint'],
             'status': tpoint_result['status'],
             'time': time,
@@ -86,7 +87,6 @@ html['id'] = prob.get_id()
 html['name'] = prob.get_name()
 title = "Judging Problem[%s]: %s" % (prob.get_id(), prob.get_title())
 nav = u'<a href="/problem/%s">Problem[%s]: %s</a> » Judge' % (prob.get_id(), prob.get_id(), prob.get_title())
-notify = ''
 js = '''function confirm_cheat() {
     r = confirm("最好是自己先想想～你真的真的确定要偷看吗……");
     return r;
@@ -99,4 +99,4 @@ main = u'''
 <p><a href="/problem/%(id)s" style="margin-left: 14px;">« 返回该题目</a><a href="/" style="margin-left: 14px;">« 返回首页</a></p>
 ''' % html
 
-print KT('/main.kt', data=locals(), this=THIS)
+print KT('/main.kt', data=locals(), notify=get_notify(), style=get_style(), this=THIS)

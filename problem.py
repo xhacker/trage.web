@@ -1,22 +1,13 @@
 # -*- coding: UTF-8 -*-
-session = Session()
-SET_UNICODE_OUT("utf-8")
+Include("/page_common.py")
 from trage.common.problem import *
 from trage.helpers import nl2br
-
-login = hasattr(session, "login") and session.login
 
 prob = Problem(THIS.args[0])
 prob.load()
 
 title = "Problem[%s]: %s" % (prob.get_id(), prob.get_title())
 nav = title
-js = ''
-
-notify = ''
-if hasattr(session, "notify") and session.notify:
-    notify = '<div class="notify"><p class="info">%s</p></div>' % session.notify
-    session.notify = None
 
 if login:
     submit_html = '''<form action="/judge" enctype="multipart/form-data" method="post">
@@ -43,7 +34,7 @@ else:
     ac_emotion = ''
 
 if get_std(prob.get_id())['c'] or get_std(prob.get_id())['cpp']:
-    std_html = '能再想想就再想想吧。如果如果实在做不出来了，<a href="/cheat/std?prob_id=%s" target="_blank">点此偷看…</a>' % prob.get_id()
+    std_html = '能再想想就再想想吧。如果如果实在做不出来了，<a href="/cheat/std/%s" target="_blank">点此偷看…</a>' % prob.get_id()
 else:
     std_html = '此题暂无标程，没法偷看…<a href="http://www.google.com.hk/search?q=' + prob.get_title() + '+标程&sa=Google+%E6%90%9C%E7%B4%A2&prog=aff&client=pub-1037665964482161&hl=zh-CN&source=sdo_sb&sdo_rt=ChBKScsMAAfkWwpvwhqoq0kyEg5fX1JMX0RFRkFVTFRfXxoIW1Pqd8JmonQoAVjV0vz7p7mFrogB" target="_blank">点此到网上搜搜</a>。'
 
@@ -79,4 +70,4 @@ main = u'''
     'submit': submit_html,
     'std': std_html }
 
-print KT('/main.kt', data=locals(), this=THIS)
+print KT('/main.kt', data=locals(), notify=get_notify(), style=get_style(), this=THIS)

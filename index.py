@@ -1,19 +1,11 @@
 # -*- coding: UTF-8 -*-
-session = Session()
-SET_UNICODE_OUT("utf-8")
+Include("/page_common.py")
 from trage.common.problem import *
 from trage.helpers import get_difficulty_text
 from user import is_login
 
-login = hasattr(session, "login") and session.login
-
 title = "Home"
 nav = title
-
-notify = ''
-if hasattr(session, "notify") and session.notify:
-    notify = '<div class="notify"><p class="info">%s</p></div>' % session.notify
-    session.notify = None
 
 problist = get_problist()
 problist_html = ""
@@ -132,4 +124,4 @@ main = u'''<div class="warn align_left">
 <hr />
 <p class="align_right">%s</p>''' % (problist_html, user_html, quote)
 
-print KT('/main.kt', data=locals(), this=THIS)
+print KT('/main.kt', data=locals(), notify=get_notify(), style=get_style(), this=THIS)

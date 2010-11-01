@@ -47,3 +47,10 @@ def reg(username, realname, password):
         session.notify = "用户名重了，换个诡异点的吧～"
         raise HTTP_REDIRECTION, "/"
     login(username, password)
+
+def change_theme(ref):
+    if not hasattr(session, "style") or (hasattr(session, "style") and session.style == "cuteblue.css"):
+        session.style = "eyecandy.css"
+    else:
+        session.style = "cuteblue.css"
+    raise HTTP_REDIRECTION, ref

@@ -18,7 +18,7 @@ a:hover {
 
 #wrapper {
     margin: 12px auto;
-    width: 760px;
+    width: 820px;
     padding: 14px;
 }
 h1 {
@@ -26,13 +26,16 @@ h1 {
 }
 h2 {
     font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 h3 {
     font-size: 22px;
     margin-bottom: 3px;
 }
 p {
-    margin-top: 3px;
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
 img {
     margin: 8px auto 3px 10px;
@@ -45,7 +48,7 @@ hr {
     width: 100%;
     border: 0;
     margin: 10px auto;
-    border-bottom: solid 1px #242424;
+    border-bottom: solid 1px #594C40;
     clear: both;
 }
 
@@ -54,7 +57,78 @@ ul {
     padding-left: 28px;
 }
 li {
-    margin-bottom: 3px;
     padding-left: 0;
     color: #00233D;
+}
+
+.align_left {
+    text-align: left !important;
+}
+.align_right {
+    text-align: right !important;
+}
+.align_center {
+    text-align: center !important;
+}
+
+label {
+    width: 80px;
+    float: left;
+    text-align: right;
+    margin-right: 12px;
+}
+input[type="text"], input[type="password"], textarea {
+    padding: 3px 6px;
+    outline: none;
+    border: 1px solid #947C63;
+}
+input[type="text"], input[type="password"] {
+    width: 150px;
+}
+textarea {
+    height: 200px;
+    width: 600px;
+}
+input:focus, textarea:focus {
+    -webkit-box-shadow: 0px 0px 5px #211D19;
+    -moz-box-shadow: 0px 0px 5px #211D19;
+    box-shadow: 0px 0px 5px #211D19;
+}
+button {
+    margin-left: 6px;
+}
+
+table {
+    font-family: "Menlo", "DejaVu Sans Mono", Consolas, Monaco, "Courier New", "WenQuanYi Micro Hei", "Hiragino Sans GB", "Microsoft YaHei";
+    margin: 13px auto;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+td {
+    padding: 5px 20px;
+}
+th {
+    padding: 3px 0px;
+}
+
+.info, .warn {
+    width: 540px;
+    text-align: center;
+    font-size: 0.8em;
+    margin: auto;
+    border: 2px solid #211D19;
+    background-color: #CEC89D;
+    padding: 10px;
+}
+.notify {
+    width: 100%;
+    position: fixed;
+    top: 36px;
+}
+.notify p {
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    opacity: 0.8;
+    width: 320px;
 }
