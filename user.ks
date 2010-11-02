@@ -9,6 +9,7 @@ def login(username, password):
         raise HTTP_REDIRECTION, "/"
     
     from trage.common.user import User
+    username = username.lower()
     user = User(username, password)
     if user.load():
         session.notify = "Login failed, wrong password."
@@ -43,6 +44,7 @@ def reg(username, realname, password):
         raise HTTP_REDIRECTION, "/"
 
     from trage.common.user import add_user
+    username = username.lower()
     if add_user(username, realname, password):
         session.notify = "用户名重了，换个诡异点的吧～"
         raise HTTP_REDIRECTION, "/"
