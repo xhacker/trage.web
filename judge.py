@@ -15,7 +15,15 @@ try:
 except AttributeError:
     session.notify = "没选择源文件呢～"
     raise HTTP_REDIRECTION, "/problem/%s#submit" % prob_id
-tmp_name = os.tmpnam() + os.path.basename(_source.filename)
+
+import ntpath, posixpath, macpath
+def basename(filename):
+    for m in ntpath, posixpath, macpath:
+        if m.sep in filename:
+            return m.basename(filename)
+    return filename
+
+tmp_name = os.tmpnam() + basename(_source.filename)
 out = open(tmp_name, 'wb')
 shutil.copyfileobj(f, out)
 out.close()

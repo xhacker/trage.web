@@ -16,7 +16,7 @@ if login:
     <p>
         <input type="file" name="source" />
         <input type="hidden" name="prob_id" value="%(id)s" />
-        <input type="submit" />
+        <input type="submit" value="提交" />
     </p>
 </form>''' % {
     'id': prob.get_id(),
@@ -38,6 +38,11 @@ if get_std(prob.get_id())['c'] or get_std(prob.get_id())['cpp']:
 else:
     std_html = '此题暂无标程，没法偷看…<a href="http://www.google.com.hk/search?q=' + prob.get_title() + '+标程&sa=Google+%E6%90%9C%E7%B4%A2&prog=aff&client=pub-1037665964482161&hl=zh-CN&source=sdo_sb&sdo_rt=ChBKScsMAAfkWwpvwhqoq0kyEg5fX1JMX0RFRkFVTFRfXxoIW1Pqd8JmonQoAVjV0vz7p7mFrogB" target="_blank">点此到网上搜搜</a>。'
 
+hint = ''
+if prob.get_info_hint():
+    hint = '''<h3>提示</h3>
+<p>%s</p>''' % nl2br(prob.get_info_hint())
+
 main = u'''
 <h2>%(emotion)s %(title)s</h2>
 <hr />
@@ -51,8 +56,7 @@ main = u'''
 <p>%(example_input)s</p>
 <h3>样例输出</h3>
 <p>%(example_output)s</p>
-<h3>提示</h3>
-<p>%(info_hint)s</p>
+%(hint)s
 <h3>提交程序</h3>
 <a name="submit"></a>
 %(submit)s
@@ -66,7 +70,7 @@ main = u'''
     'info_output': nl2br(prob.get_info_output()),
     'example_input': nl2br(prob.get_example_input()),
     'example_output': nl2br(prob.get_example_output()),
-    'info_hint': nl2br(prob.get_info_hint()),
+    'hint': hint,
     'submit': submit_html,
     'std': std_html }
 

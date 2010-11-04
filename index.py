@@ -120,8 +120,8 @@ from random import randint
 quote = quotes[randint(0, len(quotes) - 1)]
 
 main = u'''<div class="warn align_left">
-<p>欢迎使用 TrageWeb 。这是一个基于 Trage 评测系统的站点，目前处于测试阶段。<br />请反馈任何遇到的问题，谢谢。</p>
-<p>目前题目不多，仅用来测试。未来将逐步添加。</p>
+<p>欢迎使用 NDS.OJ。请反馈任何遇到的问题，谢谢。</p>
+<p>这里的题目基本都是各种竞赛的真题，一般来讲描述比较到位、数据比较严谨、难度比较合适…其中 CCC 的题目都是鸟语的= =，自己翻成中文的，有什么问题请反映。另外还有些 USACO 的题正在加…都是选的比较好的。还有些题目是自己编的:D</p>
 </div>
 <hr />
 <h2>Problem List</h2>

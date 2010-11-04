@@ -35,7 +35,7 @@ def change_password(username, password):
 def logout():
     session.login = None
 
-    session.notify = "Logout sucessful."
+    session.notify = "Quitters never win."
     raise HTTP_REDIRECTION, "/"
 
 def reg(username, realname, password):
@@ -51,8 +51,8 @@ def reg(username, realname, password):
     login(username, password)
 
 def change_theme(ref):
-    if not hasattr(session, "style") or (hasattr(session, "style") and session.style == "cuteblue.css"):
-        session.style = "eyecandy.css"
-    else:
+    if not hasattr(session, "style") or (hasattr(session, "style") and session.style == "eyecandy.css"):
         session.style = "cuteblue.css"
+    else:
+        session.style = "eyecandy.css"
     raise HTTP_REDIRECTION, ref
