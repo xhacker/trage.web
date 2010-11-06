@@ -66,8 +66,11 @@ li {
     color: #00233D;
 }
 
-table {
+pre, table {
     font-family: "Menlo", "DejaVu Sans Mono", Consolas, Monaco, "Courier New", "WenQuanYi Micro Hei", "Hiragino Sans GB", "Microsoft YaHei";
+}
+
+table {
     margin: 10px auto;
     border-collapse: collapse;
     border-color: #46ABE4;
@@ -151,7 +154,7 @@ button {
     background-color: #E5E5E5;
 }
 .xsmall {
-    font-size: 11px;
+    font-size: 12px;
     color: #666666;
 }
 .small {

@@ -40,9 +40,9 @@ if login:
         prob = Problem(code['prob_id'])
         prob.load()
         from time import localtime, strftime
-        ftime = strftime("%Y年%m月%d日 %H:%M", localtime(code['time']))
+        ftime = strftime("%m月%d日 %H:%M", localtime(code['time']))
         code_html += '<li><a href="/peep/usercode/%s" target="_blank">[%s] %s</a></li>' % (code['filename'], ftime, prob.get_title())
-    user_html += "<h3>通过的代码备份</h3><ul>%s</ul>" % code_html
+    user_html += '<h3>通过的代码备份</h3><ul class="xsmall">%s</ul>' % code_html
 else:
     user_html = '''<h2>登录或注册</h2>
 <form action="/user/login" id="login">
@@ -91,6 +91,20 @@ function login()
 function change_password()
 {
     document.getElementById("password_form").style.display = "block";
+}
+'''
+
+if REQUEST.has_key("focuslogin"):
+    js += '''function focus_on_login()
+{
+    document.getElementById("username").focus();
+}
+if (document.all) {
+	// IE
+	window.attachEvent('onload', focus_on_login);
+} else {
+	// Firefox, etc.
+	window.addEventListener('load', focus_on_login, false);
 }'''
 
 quotes = [
@@ -115,13 +129,16 @@ quotes = [
     '黄河母亲，神力无限！',
     '刷题重地，闲人免进。',
     '不刷题的人是孤独的。孤独的人是可耻的。',
+    '自从用了“long long”之后，一切都不同了。。。<br />/* 友情提示：NOIP 不让用 long long */',
+    '你再背一遍 maxlongint？记着，2147483647。',
 ]
 from random import randint
 quote = quotes[randint(0, len(quotes) - 1)]
 
 main = u'''<div class="warn align_left">
-<p>欢迎使用 NDS.OJ。请反馈任何遇到的问题，谢谢。</p>
-<p>这里的题目基本都是各种竞赛的真题，一般来讲描述比较到位、数据比较严谨、难度比较合适…其中 CCC 的题目都是鸟语的= =，自己翻成中文的，有什么问题请反映。另外还有些 USACO 的题正在加…都是选的比较好的。还有些题目是自己编的:D</p>
+<p>欢迎使用 NDSOJ，十一学校强悍的评测系统。请反馈任何遇到的问题，谢谢。反馈方式么…呃…直接说话～</p>
+<p>CCC 的题是从鸟语翻过来的，有什么问题请反映。USACO 题目是从前三章选出的比较有价值的，翻译来自 NOCOW。祝刷题愉快:P</p>
+<p>如果你觉得哪题写得不错，可以整理得规范些，加点注释，然后成为标程<br />/* 交题的时候把程序命名为“我想成为标程.c”就行了 */</p>
 </div>
 <hr />
 <h2>Problem List</h2>

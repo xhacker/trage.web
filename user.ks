@@ -13,7 +13,7 @@ def login(username, password):
     user = User(username, password)
     if user.load():
         session.notify = "Login failed, wrong password."
-        raise HTTP_REDIRECTION, "/"
+        raise HTTP_REDIRECTION, "/?focuslogin"
     else:
         session.login = True
         session.username = username
