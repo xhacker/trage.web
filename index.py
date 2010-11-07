@@ -3,14 +3,16 @@ Include("/page_common.py")
 from trage.common.problem import *
 from trage.common.user import get_code_list
 from trage.helpers import get_difficulty_text
-from user import is_login
 
 title = "Home"
 nav = title
 
 problist = get_problist()
 problist_html = ""
+count = 0
 for prob in problist:
+    if count == int((len(problist) + 1) / 2):
+        problist_html += '</ul><ul class="col2">'
     if login:
         AC = get_status(session.userid, prob['id'])
         if AC:
@@ -20,6 +22,7 @@ for prob in problist:
     else:
         accepted_text = ''
     problist_html += '<li>[%s] %s <a href="/problem/%s">%s</a></li>' % (get_difficulty_text(prob['difficulty']), accepted_text, prob['id'], prob['title'])
+    count += 1
 
 if login:
     user_html = '''<h2 class="float: left;">你好，%s。祝你好运！</h2>
@@ -36,13 +39,17 @@ if login:
 </form>''' % (session.realname, session.username)
     code_list = get_code_list(session.userid)
     code_html = ""
+    count = 0
     for code in code_list:
+        if count == int((len(code_list) + 1) / 2):
+            code_html += '</ul><ul class="xsmall col2">'
         prob = Problem(code['prob_id'])
         prob.load()
         from time import localtime, strftime
         ftime = strftime("%m月%d日 %H:%M", localtime(code['time']))
         code_html += '<li><a href="/peep/usercode/%s" target="_blank">[%s] %s</a></li>' % (code['filename'], ftime, prob.get_title())
-    user_html += '<h3>通过的代码备份</h3><ul class="xsmall">%s</ul>' % code_html
+        count += 1
+    user_html += '<h3>通过的代码备份</h3><ul class="xsmall col1">%s</ul>' % code_html
 else:
     user_html = '''<h2>登录或注册</h2>
 <form action="/user/login" id="login">
@@ -116,7 +123,7 @@ quotes = [
     '不刷题的人是寂寞的。',
     '代码如诗。',
     '刷题无极限，黄轶唯最贱！',
-    '为什么 RTE ? RP Too Extreme!',
+    '为什么 RTE ? RP Too Extreme! 人品大爆发！',
     '强哥穿着黑衣服来上课：“我希望你们都成为黑马！”',
     '编译失败。源代码大喊：“我爸是陶陶！”',
     '人生没有后效性，DP 就是搞不定。',
@@ -136,13 +143,12 @@ from random import randint
 quote = quotes[randint(0, len(quotes) - 1)]
 
 main = u'''<div class="warn align_left">
-<p>欢迎使用 NDSOJ，十一学校强悍的评测系统。请反馈任何遇到的问题，谢谢。反馈方式么…呃…直接说话～</p>
-<p>CCC 的题是从鸟语翻过来的，有什么问题请反映。USACO 题目是从前三章选出的比较有价值的，翻译来自 NOCOW。祝刷题愉快:P</p>
-<p>如果你觉得哪题写得不错，可以整理得规范些，加点注释，然后成为标程<br />/* 交题的时候把程序命名为“我想成为标程.c”就行了 */</p>
+<p>欢迎使用 NDSOJ，十一学校强悍的评测系统。使用前请查看<a href="/help">帮助文档</a>。</p>
+<p>嘻嘻嘻的题是从鸟语翻过来的，有什么问题请反映。USACO 题目是前三章的比较有价值的，翻译来自 NOCOW。祝刷题愉快:P 接下来还会有更多题目…</p>
 </div>
 <hr />
 <h2>Problem List</h2>
-<ul>
+<ul class="col1">
     %s
 </ul>
 <hr />

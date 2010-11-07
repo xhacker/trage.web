@@ -57,8 +57,15 @@ hr {
 }
 
 ul {
-    margin: 0 auto 5px auto;
+    margin: 0 auto 10px auto;
     padding-left: 28px;
+}
+.col1, .col2 {
+    float: left;
+}
+.col1 {
+    margin-left: 18px;
+    width: 340px;
 }
 li {
     margin-bottom: 3px;
