@@ -28,7 +28,7 @@ if login:
     'id': prob_id,
     'name': prob.get_name() }
 else:
-    submit_html = '<p>还没<a href="/#login">登录</a>呢，别想交题！！</p>'
+    submit_html = '<p>还没<a href="/?focuslogin#login">登录</a>呢，别想交题！！</p>'
 
 if login:
     AC = get_status(session.userid, prob_id)
@@ -50,7 +50,7 @@ if prob.get_info_hint():
 <p>%s</p>''' % format(prob.get_info_hint(), prob_id)
 
 main = u'''
-<h2>%(emotion)s %(title)s</h2>
+<h2 class="float_left">%(emotion)s %(title)s</h2><p class="float_right">通过率：%(ac_rate)s%% ( <abbr title="通过数">%(ac_count)s</abbr> / <abbr title="提交数">%(submit_count)s</abbr> )</p>
 <hr />
 <h3>题目描述</h3>
 <p>%(info_main)s</p>
@@ -70,6 +70,10 @@ main = u'''
 <p>%(std)s</p>
 ''' % {
     'emotion': ac_emotion,
+    'title': prob.get_title(),
+    'ac_rate': prob.get_accept_rate(),
+    'ac_count': prob.get_accept_count(),
+    'submit_count': prob.get_submit_count(),
     'title': prob.get_title(),
     'info_main': format(prob.get_info_main(), prob_id),
     'info_input': format(prob.get_info_input(), prob_id),

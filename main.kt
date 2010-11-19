@@ -30,7 +30,7 @@ $notify
 <hr />
 $data.main
 <hr />
-<p class="xsmall"><a onclick="alert('别点我！有意思吗？')">♥</a> Proudly powered by <a href="http://code.google.com/p/trage/">TrageWeb</a>. Made in Beijing National Day School.<button id="robot_button" onclick="robot_button();" style="float: right;">他们有一个计划</button></p>
+<p class="xsmall"><a onclick="alert('Give me your answer, do.')">♥</a> Lovingly made by <a href="http://www.bjshiyi.org.cn">BNDS</a> guys. The most juicy <a href="http://code.google.com/p/trage/">trage</a><a href="http://xhacker.shiyiquan.cn">dy</a>. <button id="robot_button" onclick="robot_button();" style="float: right;">他们有一个计划</button></p>
 </div>
 </body>
 </html>

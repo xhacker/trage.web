@@ -3,7 +3,7 @@ SET_UNICODE_OUT("utf-8")
 from trage.common.problem import get_io, get_std, get_usercode
 
 def index():
-    print "Chect 不利于身体健康。慎用。"
+    print "Cheat 不利于身体健康。慎用。"
 
 def input():
     print "<pre>%s</pre>" % get_io('input', THIS.args[0], THIS.args[1])

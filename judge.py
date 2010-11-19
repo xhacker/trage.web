@@ -99,7 +99,7 @@ html['name'] = prob.get_name()
 title = "Judging Problem[%s]: %s" % (prob.get_id(), prob.get_title())
 nav = u'<a href="/problem/%s">Problem[%s]: %s</a> » Judge' % (prob.get_id(), prob.get_id(), prob.get_title())
 js = '''function confirm_cheat() {
-    r = confirm("最好是自己先想想～你真的真的确定要偷看吗……");
+    r = confirm("懦弱者不会赢。没有到山穷水尽，就不该看数据。你真的真的确定要偷看吗…");
     return r;
 }'''
 
